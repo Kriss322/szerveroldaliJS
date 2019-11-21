@@ -1,0 +1,72 @@
+login.html 	-	login form
+register.html	-	register form
+index.html	-	sajat adatok, edit gomb
+matches.html	-	parok tablazatos formaban, torles gomb
+swap.html	-	1 db hal - tetszik, nem tetszik gomb
+
+Routing
+
+renderMW
+
+middlewares/auth
+	handleWrongPassMW
+	authMW
+	checkPassMW
+
+middlewares/fishes
+	getFishesMW
+	getFishMW
+	delFishMW
+	saveFishMW
+
+midlewares/matches
+	getMatchMW
+	getMatchesMW
+	saveMatchMV
+	delMatchMW
+
+
+GET 	/?hiba=nemjojelszo	- 	index.html
+POST 	/fish/:id
+	getFishesMW()
+	handleWrongPassMW( get parametert nez - template valtozoba rak)
+	renderMW(index.html)
+
+DELETE 	/fish/:id
+	authMW()
+	delFishMW()
+
+POST 	/login 			-	login.html - jelszo ellenorzes, ha ok index-re redirect, amugy vissza
+	checkPassMW()				
+
+POST 	/register		-	register.html - uj hal letrehozasa
+	saveFishMW()
+	rednerMW(register.html)
+
+GET 	/fish			-	swap.html
+	authMW()
+	getFishesMW()
+	rednerMW(swap.html)
+
+GET 	/fish/:id/matches	-	matches.html
+	authMW()
+	getFishMW()
+	getMatchesMW()
+	rednerMW(matches.html)
+
+GET 	/fish/:id/matches/:matchid  
+	authMW()
+	getFishMW()
+	getMatchMW()
+
+POST 	/fish/:id/matches/:matchid 
+	authMW()
+	getFishMV()
+	getMatchMW()
+	saveMatchMV()
+
+DELETE 	/fish/:id/matches/:matchid  
+	authMW()
+	getFishMV()
+	getMatchMW()
+	delMatchMV()

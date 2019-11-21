@@ -1,0 +1,52 @@
+<%- include('header') %>
+    <!-- start: content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span class="btn-group">
+                    <a href="matches.html" class="btn btn-info">Matches</a>
+                    <a href="index.html" class="btn btn-info">Profile</a>
+                    <a href="swap.html" class="btn btn-info">Search</a>
+                    <a href="login.html" class="btn btn-info">Logout</a>
+                </span>
+            </div>
+          </div>
+            <div class="col-md-push-3 col-md-6 col-xs-12">
+              <h2>Profile</h2>
+              <img src="http://lorempixel.com/400/200/animals" />
+              <form>
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" id="name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="itemtype">Age</label>
+                    <select id="itemtype" class="form-control">
+                        <option>1-10</option>
+                        <option>11-40</option>
+                        <option>41-99</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="name">Color</label>
+                  <input type="text" id="name" class="form-control">
+              </div>
+                  <div class="form-group">
+                      <label for="itemtype">Type</label>
+                      <select id="itemtype" class="form-control">
+                          <option>Tuna</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="serial">About me</label>
+                      <input type="text" id="serial" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <a href="index.html" class="btn btn-primary">Save</a>
+                      <a href="index.html" class="btn btn-default">Cancel</a>
+                  </div>
+              </form>
+          </div>
+    </div>
+    <!-- end: content -->
+    <%- include('footer') %>
