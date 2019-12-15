@@ -3,8 +3,18 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+module.exports = function(objectrepository) {
+    return function(req, res, next) {
+        if (typeof req.body.password === 'undefined') {
+            return next();
+        }
+
+        if (req.body.password === 'pass') {
+            req.session.belepve = true;
+            return req.session.save(err => res.redirect('/index'));
+        }
+
+        res.locals.error = 'Hibás jelszó!';
+        return next();
     };
 };

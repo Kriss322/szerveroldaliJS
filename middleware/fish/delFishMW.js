@@ -4,8 +4,18 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+module.exports = function(objectrepository) {
+    return function(req, res, next) {
+        if (typeof res.locals.fish === 'undefined') {
+            return next();
+        }
+
+        res.locals.fish.remove(err => {
+            if (err) {
+                return next(err);
+            }
+
+            return res.redirect('/login');
+        });
     };
 };

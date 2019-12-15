@@ -1,10 +1,14 @@
 /**
  * If the user is not logged in, redirects to /
  */
-module.exports = function (objectrepository) {
+const requireOption = require('../requireOption');
 
-  return function (req, res, next) {
-    return next();
-  };
+module.exports = function(objectrepository) {
+    return function(req, res, next) {
+        if (typeof req.session.belepve === 'undefined' || req.session.belepve !== true) {
+            return res.redirect('/');
+        }
 
+        next();
+    };
 };

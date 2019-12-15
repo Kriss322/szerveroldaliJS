@@ -4,8 +4,17 @@
  */
 const requireOption = require('../requireOption');
 
-module.exports = function (objectrepository) {
-    return function (req, res, next) {
-        next();
+module.exports = function(objectrepository) {
+    const FishModel = requireOption(objectrepository, 'FishModel');
+
+    return function(req, res, next) {
+        FishModel.find({}, (err, fishes) => {
+            if (err) {
+                return next(err);
+            }
+
+            res.locals.fishes = fishes;
+            return next();
+        });
     };
 };
